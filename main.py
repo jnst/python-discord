@@ -1,9 +1,18 @@
+import os
+import sys
 import requests
 
-WEBHOOK_URL = 'https://discordapp.com/api/webhooks/xxxxxxxxxx'
+WEBHOOK_URL = os.getenv('WEBHOOK_URL')
 
 def send(message):
-    payload = {'content': message}
-    requests.post(WEBHOOK_URL, payload)
+    if not WEBHOOK_URL:
+        print('error: must specify webhook url')
+        sys.exit(1)
 
-send('hello')
+    payload = {'content': message}
+    r = requests.post(WEBHOOK_URL, payload)
+    r.raise_for_status
+    print('success')
+
+if __name__ == '__main__':
+    send('hello, world')
