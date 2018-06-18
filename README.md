@@ -4,7 +4,7 @@
 
 ```bash
 python -m venv .venv
-. .venv/bin/activate.fish
+. .venv/bin/activate.fish  # using fish shell
 deactivate
 ```
 
